@@ -38,8 +38,8 @@ class Ingestor(IngestorInterface):
                        ingestor in cls.ingestors]:
             raise InvalidExtensionError(ext)
 
-    @classmethod
-    def validate_filename(cls, filename: str) -> None:
+    @staticmethod
+    def validate_filename(filename: str) -> None:
         """
         Assert whether given filename is present in the `DogQuotes` directory.
 
@@ -47,7 +47,7 @@ class Ingestor(IngestorInterface):
         """
         if filename not in os.listdir("./_data/DogQuotes/"):
             raise FileNotFoundError(f'FileNotFoundError: "{filename}"'
-                                     ' not found in directory.')
+                                    ' not found in directory.')
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
