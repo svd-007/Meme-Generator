@@ -81,11 +81,11 @@ class MemeGenerator:
 
         # Adding the caption to the image.
         caption = f'{text} - {author}'
-        font = ImageFont.truetype('./_data/font/Candara.ttf')
+        font = ImageFont.truetype('./_data/font/Candara.ttf', size=20)
 
         draw = ImageDraw.Draw(img)
-        draw.text(xy=(randint(0, img.width - len(caption)),
-                      randint(0, img.height)),
+        draw.text(xy=(randint(10, 40),
+                      randint(20, 70)),
                   text=caption,
                   font=font,
                   fill='white')
