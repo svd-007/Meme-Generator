@@ -13,19 +13,19 @@ All required dependencies are listed in the root `requirements.txt`.
 Instructions:
 
     CLI:
-        - clone the repository: `git clone https://github.com/svd-007/Meme-Generator`.
-        - Create a virtual environement (as required): `python3 -m venv .`.
-        - Activate the venv: `source ./bin/activate`.
-        - Install the dependencies: `pip install -r requirements.txt`.
-        - Run meme.py script with the arguments required: `python3 meme.py --path --body --author`.
+        - clone the repository: git clone https://github.com/svd-007/Meme-Generator
+        - Create a virtual environement (as required): python3 -m venv .
+        - Activate the venv: source ./bin/activate
+        - Install the dependencies: pip install -r requirements.txt
+        - Run meme.py script with the arguments required: python3 meme.py --path --body --author
 
     Flask server:
-        - Clone the repository: `git clone https://github.com/svd-007/Meme-Generator`.
-        - Create a virtual environement (as required): `python3 -m venv .`.
-        - Activate the venv: `source ./bin/activate`.
-        - Install the dependencies: `pip install -r requirements.txt`.
-        - Run app.py script: `python3 app.py`.
-        - Navigate to your localhost as served by flask (`http://127.0.0.1:5000/` by default).
+        - Clone the repository: git clone https://github.com/svd-007/Meme-Generator
+        - Create a virtual environement (as required): python3 -m venv .
+        - Activate the venv: source ./bin/activate
+        - Install the dependencies: pip install -r requirements.txt
+        - Run app.py script: python3 app.py
+        - Navigate to your localhost as served by flask (http://127.0.0.1:5000/ by default)\
 
 
 Program organization:
