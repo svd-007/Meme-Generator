@@ -1,6 +1,5 @@
 """Represent a class, providing an interface to parse various filetypes."""
 
-import os
 from typing import List
 
 from .model import QuoteModel
@@ -38,38 +37,23 @@ class Ingestor(IngestorInterface):
                        ingestor in cls.ingestors]:
             raise InvalidExtensionError(ext)
 
-    @staticmethod
-    def validate_filename(filename: str) -> None:
-        """
-        Assert whether given filename is present in the `DogQuotes` directory.
-
-        Raise `FileNotFoundError` if not found.
-        """
-        if filename not in os.listdir("./_data/DogQuotes/"):
-            raise FileNotFoundError(f'FileNotFoundError: "{filename}"'
-                                    ' not found in directory.')
-
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         """
         Return a list of `QuoteModel` objects after parsing a file.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         `path`: str
             path of the file to be parsed.
         """
         ext = path.split(".")[-1]
-        filename = path.split("/")[-1]
-        # First try-except block to catch any exceptions w.r.t
-        # invalid extension or invalid filename.
+        # First try-except block to catch any exceptions w.r.t.
+        # invalid extension.
         try:
             cls.validate_extension(ext)
-            cls.validate_filename(filename)
         except InvalidExtensionError as inv_ext_err:
             print(inv_ext_err)
-        except FileNotFoundError as fnf_err:
-            print(fnf_err)
         else:
             # Second try-except block to catch any exceptions
             # while parsing the file.
@@ -78,4 +62,4 @@ class Ingestor(IngestorInterface):
                     if ingestor.can_ingest(path):
                         return ingestor.parse(path)
             except Exception:
-                print(f"ParsingError: Error occured while parsing {filename}.")
+                print(f"ParsingError: Error occured while parsing {path}.")

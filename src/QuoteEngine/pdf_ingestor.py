@@ -4,8 +4,8 @@ from .ingestor_interface import IngestorInterface
 from .model import QuoteModel
 from typing import List
 import subprocess
-import os
-import random
+from os import remove
+from random import randint
 
 
 class PDFIngestor(IngestorInterface):
@@ -23,7 +23,7 @@ class PDFIngestor(IngestorInterface):
         `path`: str
             path of the `.pdf` file to be parsed.
         """
-        tmp = f"./_data/DogQuotes/{random.randint(0, 1000)}.txt"
+        tmp = f"./_data/DogQuotes/{randint(0, 1000)}.txt"
         program = "./xpdf-tools-win-4.03/bin64/pdftotext.exe"
         subprocess.call([program, '-raw', path, tmp])
 
@@ -31,6 +31,6 @@ class PDFIngestor(IngestorInterface):
             quotes = [QuoteModel(body=line.strip().split(' - ')[0],
                                  author=line.strip().split(' - ')[1])
                       for line in infile if len(line) > 1]
-        os.remove(tmp)
+        remove(tmp)
 
         return quotes
