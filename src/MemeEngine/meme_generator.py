@@ -62,7 +62,7 @@ class MemeGenerator:
         `author`: str
             author of the meme.
 
-        `width`: int = 500
+        `width`: int
             desired width of the image, default = 500px.
         """
         # Opening the image.
@@ -82,6 +82,7 @@ class MemeGenerator:
         # Adding the caption to the image.
         caption = f'{text} - {author}'
         font = ImageFont.truetype('./_data/font/Candara.ttf')
+
         draw = ImageDraw.Draw(img)
         draw.text(xy=(randint(0, img.width - len(caption)),
                       randint(0, img.height)),
@@ -91,6 +92,10 @@ class MemeGenerator:
 
         # Saving the image to the output directory.
         output_path = f'{self.output_dir}/{randint(0, 1000)}.png'
-        img.save(output_path)
+
+        try:
+            img.save(output_path)
+        except Exception as e:
+            print(e)
 
         return output_path
