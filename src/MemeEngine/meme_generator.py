@@ -3,7 +3,7 @@
 from PIL import Image, ImageDraw, ImageFont
 from os import makedirs
 from random import randint
-
+from textwrap import fill
 
 class MemeGenerator:
     """
@@ -80,7 +80,7 @@ class MemeGenerator:
             img = img.resize((width, height), Image.NEAREST)
 
         # Adding the caption to the image.
-        caption = f'{text} - {author}'
+        caption = fill(f'{text} - {author}', width=40)
         font = ImageFont.truetype('./_data/font/Candara.ttf', size=20)
 
         draw = ImageDraw.Draw(img)
