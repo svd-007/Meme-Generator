@@ -23,9 +23,11 @@ class PDFIngestor(IngestorInterface):
         `path`: str
             path of the `.pdf` file to be parsed.
         """
-        tmp = f"./_data/DogQuotes/{randint(0, 1000)}.txt"
-        program = "./xpdf-tools-win-4.03/bin64/pdftotext.exe"
-        subprocess.call([program, '-raw', path, tmp])
+        tmp = f'./_data/DogQuotes/{randint(0, 1000)}.txt'
+        program = 'pdftotext'
+        cmd = f'{program} -raw "{path}" "{tmp}" -enc UTF-8'
+
+        subprocess.call(cmd, shell=True, stderr=subprocess.STDOUT)
 
         with open(tmp, 'r') as infile:
             quotes = [QuoteModel(body=line.strip().split(' - ')[0],
